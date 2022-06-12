@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frontend Assesment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="app" class="wrapper">
+      <section class="banner" data-aos="fade-up" data-aos-delay="100">
+        <div class="banner__background-image">
+            <img src="images/600x600.png" srcset="images/1920x650.png 1024w, images/600x600.png 600w" sizes="(min-width: 576px) 800px, 300px" alt="Sample image" />
+        </div>
+        <div class="banner__content">
+          <h1>Hello Developer</h1>
+          <h2>Lorem Ipsum dolor sit amet, consectetur adipiscing elit</h2>
+        </div>
+      </section>
+      <section class="main-content">
+        <div class="article-list container mb-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+            <div class="col-md-4 article-list__item">
+              <div class="card">
+                <img src="http://via.placeholder.com/400x300" alt="article image" />
+                <div class="card-body text-center">
+                  <p>Maecenas nec semper ante, pellentesque posuere lorem. Nullam ipsum massa, consequat eget urna ut, pulvinar dignissim
+                    lorem. Nulla facilisi. Nam mattis eleifend metus. Fusce at commodo lorem. Orci varius natoque penatibus et magnis dis
+                    parturient montes, nascetur ridiculus mus. Phasellus pellentesque elit sem, vel blandit posuere.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="btn btn-outline-secondary btn-lg">Read More</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 article-list__item">
+              <div class="card">
+                <img src="http://via.placeholder.com/400x300" alt="article image" />
+                <div class="card-body text-center">
+                  <p>Maecenas nec semper ante, pellentesque posuere lorem. Nullam ipsum massa, consequat eget urna ut, pulvinar
+                    dignissim
+                    lorem.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="btn btn-outline-secondary btn-lg">Read More</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 article-list__item">
+              <div class="card">
+                <img src="http://via.placeholder.com/400x300" alt="article image" />
+                <div class="card-body text-center">
+                  <p>Nulla facilisi. Nam mattis eleifend metus. Fusce at commodo lorem. Orci varius natoque penatibus et
+                    magnis dis
+                    parturient montes, nascetur ridiculus mus. Phasellus pellentesque elit sem, vel blandit posuere.</p>
+                </div>
+                <div class="card-footer text-center">
+                  <a href="#" class="btn btn-outline-secondary btn-lg">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="container responsive-tabs" data-aos="fade-up">
+          <div class="responsive-tabs__heading mb-2">
+            <h2 class="text-center">Tabs/Accoridon Section</h2>
+          </div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" v-for="(tab, i) in tabs_data">
+              
+              <a :id="'tab' + tab.title.replace(/\s+/g, '').toLowerCase()"
+                 :key="tab.title.replace(/\s+/g, '').toLowerCase()"
+                 :href="'#pane-' + tab.title.replace(/\s+/g, '').toLowerCase()" 
+                class="nav-link" :class="{'active': i === 0 }"
+                data-bs-toggle="tab" 
+                role="tab">
+                {{ tab.title }}
+              </a>
+
+            </li>
+          </ul>
+        
+          <div id="content" class="tab-content" role="tablist">
+            
+            <div 
+              v-for="(tab, i) in tabs_data" 
+              :key="tab.title.replace(/\s+/g, '').toLowerCase()"
+              :id="'pane-' + tab.title.replace(/\s+/g, '').toLowerCase()" 
+              class="card tab-pane fade" 
+              :class="{'active show': i === 0 }" 
+              role="tabpanel" 
+              :aria-labelledby="'tab-' + tab.title.replace(/\s+/g, '').toLowerCase()">
+              
+                <div class="card-header" role="tab" :id="'heading-' + tab.title.replace(/\s+/g, '').toLowerCase()">
+                  <h5 class="mb-0">
+                    <a 
+                      data-bs-toggle="collapse" 
+                      :href="'#collapse-'+ tab.title.replace(/\s+/g, '').toLowerCase()" 
+                      :aria-expanded="(i === 0)" 
+                      :aria-controls="'collapse-'+ tab.title.replace(/\s+/g, '').toLowerCase()">
+                      {{ tab.title }}
+                    </a>
+                  </h5>
+                </div>
+                <div 
+                  :id="'collapse-'+ tab.title.replace(/\s+/g, '').toLowerCase()" 
+                  class="collapse"
+                  :class="{'show': i === 0 }"
+                  data-bs-parent="#content" 
+                  role="tabpanel" 
+                  :aria-labelledby="'heading-'+ tab.title.replace(/\s+/g, '').toLowerCase()">
+                  <div class="card-body" v-html="tab.content">
+                  </div>
+                </div>
+            </div>
+        
+            
+      
+          </div>
+        </div>
+
+        
+      </section>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="object_hash.js" type="text/javascript"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import { createApp } from 'vue'
+
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!',
+            tabs_data: [
+              {
+                "title": "Section 1",
+                "content": "<p>Maecenas nec semper ante, pellentesque posuere lorem. Nullam ipsum massa, consequat eget urna ut, pulvinar dignissim lorem. Nulla facilisi. Nam mattis eleifend metus. Fusce at commodo lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus pellentesque elit sem, vel blandit posuere.</p>"
+              },
+              {
+                "title": "Section 2",
+                "content": "<p>Mauris a orci sodales, scelerisque velit vitae, gravida nisl. Ut non laoreet eros, vel laoreet nisi. Praesent sed dolor dui. Proin non fringilla quam. Aliquam erat volutpat. Vestibulum vel arcu semper, lobortis turpis ac, ultricies nisi. Praesent id.</p>"
+              },
+              {
+                "title": "Section 3",
+                "content": "<p>Sed elementum sapien ut sapien imperdiet, eu venenatis enim rhoncus. Praesent euismod tincidunt rhoncus. Duis cras amet:</p><ul><li>List item one</li><li>List item two</li><li>List item three</li></ul>"
+              },
+              {
+                "title": "Section 4",
+                "content": "<p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.</p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>"
+              }
+            ]
+          }
+        }
+      }).mount('#app')
+    </script>
+  </body>
+</html>
