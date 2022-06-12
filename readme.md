@@ -8,6 +8,6 @@ Since I also didn't use any frontend build system. i added data.json directly on
 * Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `banana`.
   * 'b' + 'a' = 'ba'
   * 'a' + + 'a' = NaN
-  * NaN + a = 'NaNa'
+  * NaN + 'a' = 'NaNa'
   * .toLowerCase() results to 'banana'
 
